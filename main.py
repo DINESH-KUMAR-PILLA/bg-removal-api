@@ -5,7 +5,7 @@ from rembg import remove, new_session
 app = FastAPI()
 
 # FORCE lightweight model
-session = new_session(model_name="u2netp")
+session = new_session(model_name="u2netp", providers=["CPUExecutionProvider"])
 
 @app.post("/remove-bg")
 async def remove_background(file: UploadFile = File(...)):
