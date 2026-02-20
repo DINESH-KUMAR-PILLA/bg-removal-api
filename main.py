@@ -1,11 +1,16 @@
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import Response
 from rembg import remove, new_session
+import os
 
 app = FastAPI()
 
-# FORCE lightweight model
-session = new_session(model_name="u2netp", providers=["CPUExecutionProvider"])
+# lightweight model
+session = new_session(model_name="u2netp")
+
+@app.get("/")
+def root():
+    return {"message": "BG Removal API running 🚀"}
 
 @app.post("/remove-bg")
 async def remove_background(file: UploadFile = File(...)):
